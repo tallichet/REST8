@@ -33,7 +33,7 @@
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint=".8,1">
-                <GradientStop Color="White" Offset="0" />
+                <GradientStop Color="#FFFFFAC6" Offset="0" />
                 <GradientStop Color="LightGray" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>

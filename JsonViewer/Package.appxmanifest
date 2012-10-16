@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="JsonViewer.App">
-      <VisualElements DisplayName="JsonViewer" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="JsonViewer" ForegroundText="dark" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="JsonViewer" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="JsonViewer allows you to view json files" ForegroundText="dark" BackgroundColor="#FFFAC6">
+        <DefaultTile ShowName="allLogos" ShortName="Json Viewer" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFAC6" />
       </VisualElements>
       <Extensions>
         <Extension Category="windows.fileTypeAssociation">

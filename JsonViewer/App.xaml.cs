@@ -84,17 +84,12 @@ namespace JsonViewer
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
-
-            if (rootFrame.Content == null)
+            
+            if (!rootFrame.Navigate(typeof(MainPage), args.Files.First()))
             {
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), args.Files.First()))
-                {
-                    throw new Exception("Failed to create initial page");
-                }
+                throw new Exception("Failed to create initial page");
             }
+            
             Window.Current.Activate();
         }
 
