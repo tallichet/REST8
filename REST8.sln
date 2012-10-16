@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REST8", "REST8\REST8.csproj", "{D5DF5E90-5906-4006-B3FA-A5BDD4C8BED7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonViewer", "JsonViewer\JsonViewer.csproj", "{D0C62835-1FDA-408B-B379-28FB7991EA87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,30 @@ Global
 		{D5DF5E90-5906-4006-B3FA-A5BDD4C8BED7}.Release|x86.ActiveCfg = Release|x86
 		{D5DF5E90-5906-4006-B3FA-A5BDD4C8BED7}.Release|x86.Build.0 = Release|x86
 		{D5DF5E90-5906-4006-B3FA-A5BDD4C8BED7}.Release|x86.Deploy.0 = Release|x86
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|ARM.ActiveCfg = Debug|ARM
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|ARM.Build.0 = Debug|ARM
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|ARM.Deploy.0 = Debug|ARM
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|x64.ActiveCfg = Debug|x64
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|x64.Build.0 = Debug|x64
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|x64.Deploy.0 = Debug|x64
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|x86.ActiveCfg = Debug|x86
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|x86.Build.0 = Debug|x86
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Debug|x86.Deploy.0 = Debug|x86
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|ARM.ActiveCfg = Release|ARM
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|ARM.Build.0 = Release|ARM
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|ARM.Deploy.0 = Release|ARM
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|x64.ActiveCfg = Release|x64
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|x64.Build.0 = Release|x64
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|x64.Deploy.0 = Release|x64
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|x86.ActiveCfg = Release|x86
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|x86.Build.0 = Release|x86
+		{D0C62835-1FDA-408B-B379-28FB7991EA87}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
