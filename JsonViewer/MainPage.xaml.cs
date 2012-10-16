@@ -32,8 +32,6 @@ namespace JsonViewer
         {
             this.InitializeComponent();
             resources = new ResourceLoader();
-
-            this.BottomAppBar.IsOpen = true;
         }
 
         /// <summary>
@@ -61,6 +59,21 @@ namespace JsonViewer
 
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter is IStorageFile)
+            {
+                Open(e.Parameter as IStorageFile);
+            }
+            else
+            {
+                this.BottomAppBar.IsOpen = true;
+            }
+
+        }
+
         public async void Open(object sender, RoutedEventArgs e)
         {
             var picker = new FileOpenPicker();
@@ -78,6 +91,8 @@ namespace JsonViewer
 
         public async void Open(IStorageFile file) 
         {
+            pageTitleFilename.Text = file.Name;
+
             var text = await FileIO.ReadTextAsync(file);
             IJsonValue json = null;
             JsonObject o; JsonArray a; JsonValue v;
