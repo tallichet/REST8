@@ -5,6 +5,7 @@ using System.Linq;
 using Windows.Data.Json;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,10 +39,10 @@ namespace REST8.Controls
 
         private static void JsonValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
-            var richTextBlock = (sender as JsonViewer).richTextBlock;
+            var viewer = sender as JsonViewer;
             var jsonValue = args.NewValue as JsonObject;
 
-            richTextBlock.Blocks.Clear();
+            viewer.richTextBlock.Blocks.Clear();
 
             if (jsonValue == null)
             {
@@ -49,20 +50,100 @@ namespace REST8.Controls
             }
             else
             {
-                switch (jsonValue.ValueType)
-                {
-                    case JsonValueType.Array:
-                    case JsonValueType.Object:
-                    case JsonValueType.Null:
-                    case JsonValueType.Number:                    
-                    case JsonValueType.String:
-                    case JsonValueType.Boolean:
-                        var paragraph = new Paragraph();
-                        paragraph.Inlines.Add(new Run() { Text = jsonValue.Stringify() });
-                        richTextBlock.Blocks.Add(paragraph);
-                        break;
-                }
+                viewer.RenderValue(jsonValue, 0.0);
             }
         }
+
+        #region Rendering
+        private double defaultIndent = 10;
+
+        private Brush DelimitersBrush = new SolidColorBrush(Colors.Black);
+        private Brush KeyBrush = new SolidColorBrush(Colors.Red);
+        private Brush StringBrush = new SolidColorBrush(Colors.Green);
+        private Brush NumberBrush = new SolidColorBrush(Colors.Cyan);
+        private Brush BooleanBrush = new SolidColorBrush(Colors.Blue);
+
+        private void RenderValue(IJsonValue json, double indent)
+        {
+            switch (json.ValueType)
+            {
+                case JsonValueType.Array:
+                    RenderArray(json.GetArray(), indent);
+                    break;
+                case JsonValueType.Object:
+                    RenderObject(json.GetObject(), indent);
+                    break;
+                case JsonValueType.Null:
+                    AddInlines(new Run() { Text = "null", FontStyle = Windows.UI.Text.FontStyle.Italic, Foreground = BooleanBrush });
+                    break;
+                case JsonValueType.Number:
+                    AddInlines(new Run() { Text = json.GetNumber().ToString(), Foreground = NumberBrush });
+                    break;
+                case JsonValueType.String:
+                    AddInlines(new Run() { Text = "\"" + json.GetString() + "\"", Foreground = StringBrush });
+                    break;
+                case JsonValueType.Boolean:
+                    AddInlines(new Run() { Text = json.GetBoolean().ToString(), Foreground = BooleanBrush });
+                    break;
+            }
+        }
+
+        private void RenderArray(JsonArray json, double indent)
+        {
+            AddParagraph(indent, new Run() { Text = "[", Foreground = DelimitersBrush });
+
+            foreach (var value in json)
+            {
+                AddParagraph(indent + defaultIndent);
+                RenderValue(value, indent + defaultIndent);
+                AddInlines(new Run() { Text = ",", Foreground = DelimitersBrush });
+            }
+
+            AddParagraph(indent, new Run() { Text = "]", Foreground = DelimitersBrush });
+        }
+
+        private void RenderObject(JsonObject json, double indent)
+        {
+            AddParagraph(indent, new Run() { Text = "{", Foreground = DelimitersBrush });
+
+            foreach (var value in json.Keys)
+            {
+                AddParagraph(indent + defaultIndent, new Run() { Text = "\"" + value + "\":", Foreground = KeyBrush });
+                RenderValue(json[value], indent + defaultIndent);
+                AddInlines(new Run() { Text = ",", Foreground = DelimitersBrush });
+            }
+
+            AddParagraph(indent, new Run() { Text = "}", Foreground = DelimitersBrush });
+        }
+
+        private void AddInlines(params Inline[] inlines)
+        {
+            if (richTextBlock.Blocks.Any())
+            {
+                foreach (var inline in inlines)
+                {
+                    (richTextBlock.Blocks.Last() as Paragraph).Inlines.Add(inline);
+                }
+            }
+            else
+            {
+                AddParagraph(0, inlines);
+            }
+        }
+
+        private void AddParagraph(double indent, params Inline[] inlines)
+        {
+            var paragraph = new Paragraph();
+            paragraph.TextIndent = indent;
+            if (inlines != null)
+            {
+                foreach (var inline in inlines)
+                {
+                    paragraph.Inlines.Add(inline);
+                }
+            }
+            richTextBlock.Blocks.Add(paragraph);
+        }
+        #endregion
     }
 }
