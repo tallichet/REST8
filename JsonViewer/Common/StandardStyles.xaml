@@ -1187,13 +1187,13 @@
         <Setter Property="AutomationProperties.AutomationId" Value="ZoomOutAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Zoom Out"/>
         <Setter Property="Content" Value="&#xE1A4;"/>
-    </Style>
+    </Style>-->
     <Style x:Key="OpenFileAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="OpenFileAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Open File"/>
         <Setter Property="Content" Value="&#xE1A5;"/>
     </Style>
-    <Style x:Key="OtherUserAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <!--<Style x:Key="OtherUserAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="OtherUserAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Other User"/>
         <Setter Property="Content" Value="&#xE1A6;"/>

@@ -26,21 +26,21 @@ namespace REST8.Controls
             this.InitializeComponent();
         }
 
-        public JsonObject Json
+        public IJsonValue Json
         {
-            get { return (JsonObject)GetValue(JsonProperty); }
+            get { return (IJsonValue)GetValue(JsonProperty); }
             set { SetValue(JsonProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Json.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty JsonProperty =
-            DependencyProperty.Register("Json", typeof(JsonObject), typeof(JsonViewer), new PropertyMetadata(null, JsonValueChanged));
+            DependencyProperty.Register("Json", typeof(IJsonValue), typeof(JsonViewer), new PropertyMetadata(null, JsonValueChanged));
 
 
         private static void JsonValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs args)
         {
             var viewer = sender as JsonViewer;
-            var jsonValue = args.NewValue as JsonObject;
+            var jsonValue = args.NewValue as IJsonValue;
 
             viewer.richTextBlock.Blocks.Clear();
 
@@ -55,7 +55,7 @@ namespace REST8.Controls
         }
 
         #region Rendering
-        private double defaultIndent = 10;
+        private double defaultIndent = 30;
 
         private Brush DelimitersBrush = new SolidColorBrush(Colors.Black);
         private Brush KeyBrush = new SolidColorBrush(Colors.Red);
@@ -134,6 +134,7 @@ namespace REST8.Controls
         private void AddParagraph(double indent, params Inline[] inlines)
         {
             var paragraph = new Paragraph();
+            paragraph.LineHeight = 15;
             paragraph.TextIndent = indent;
             if (inlines != null)
             {

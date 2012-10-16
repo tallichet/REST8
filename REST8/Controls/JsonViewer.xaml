@@ -10,6 +10,6 @@
     d:DesignWidth="400">
     
     <Grid>
-        <RichTextBlock x:Name="richTextBlock" />
+        <RichTextBlock x:Name="richTextBlock" FontFamily="Lucida Console"/>
     </Grid>
 </UserControl>
