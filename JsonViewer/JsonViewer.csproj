@@ -12,7 +12,9 @@
     <DefaultLanguage>en</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>JsonViewer_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>JsonViewer_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>C278ECD66EE384E6A729369CA3A08F318BFE0C70</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -101,7 +103,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="fr\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\REST8\Controls\JsonViewer.xaml.cs">
@@ -126,14 +127,22 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <PRIResource Include="en\Resources.resw" />
+    <PRIResource Include="fr\Resources.resw" />
+    <None Include="JsonViewer_StoreKey.pfx" />
     <None Include="JsonViewer_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\FileLogo.png" />
+    <Content Include="Assets\Icon.targetsize-16.png" />
+    <Content Include="Assets\Icon.targetsize-256.png" />
+    <Content Include="Assets\Icon.targetsize-32.png" />
+    <Content Include="Assets\Icon.targetsize-48.png" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Common\ReadMe.txt" />
+    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
