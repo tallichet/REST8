@@ -11,27 +11,49 @@ using Windows.Data.Json;
 
 namespace REST8.ViewModel
 {
-    public class JsonViewModel : ViewModelBase
+    public class QueryViewModel : ViewModelBase
     {
-        public JsonViewModel()
+        private RelayCommand sendCommand;
+        private RelayCommand clearCommand;
+        private string urlString;
+        private List<string> requestHeaders;
+        private List<string> responseHeaders;
+        private string requestBody;
+        private HttpResponseMessage response;
+        
+        public QueryViewModel()
         {
             StringUrl = "http://dev-exopoint.exoscale.ch/_list/events";
         }
 
-        private RelayCommand getCommand;
-
-        public ICommand GetCommand
+        
+        public ICommand SendCommand
         {
             get
             {
-                if (getCommand == null)
+                if (sendCommand == null)
                 {
-                    getCommand = new RelayCommand(() =>
+                    sendCommand = new RelayCommand(() =>
                     {
                         Get();
                     });
                 }
-                return getCommand;
+                return sendCommand;
+            }
+        }
+
+        public ICommand ClearCommand
+        {
+            get
+            {
+                if (clearCommand == null)
+                {
+                    clearCommand = new RelayCommand(() =>
+                    {
+                        Get();
+                    });
+                }
+                return clearCommand;
             }
         }
 
@@ -43,6 +65,11 @@ namespace REST8.ViewModel
             set;
         }
 
+        public string ResponseString
+        {
+            get; private set;
+        }
+
         private async void Get()
         {
             try
@@ -50,19 +77,11 @@ namespace REST8.ViewModel
                 var uri = new Uri(StringUrl, UriKind.Absolute);
 
                 var client = new HttpClient();
-                var response = await client.GetAsync(uri);
-                var responseString = await response.Content.ReadAsStringAsync();
+                response = await client.GetAsync(uri);
 
-                JsonObject o;
-                if (JsonObject.TryParse(responseString, out o))
-                {
-                    Json = o;
-                    RaisePropertyChanged(() => this.Json);
-                }
-                else
-                {
-                    ShowErrorMessage("unable to parse resonse");
-                }
+
+                ResponseString = await response.Content.ReadAsStringAsync();
+                this.RaisePropertyChanged(() => this.ResponseString);
             }
             catch (Exception ex)
             {
