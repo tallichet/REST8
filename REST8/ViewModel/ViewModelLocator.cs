@@ -43,7 +43,7 @@ namespace REST8.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<JsonViewModel>();
+            SimpleIoc.Default.Register<QueryViewModel>();
         }
 
         public MainViewModel Main
@@ -54,11 +54,11 @@ namespace REST8.ViewModel
             }
         }
 
-        public JsonViewModel Json
+        public QueryViewModel Query
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<JsonViewModel>();
+                return ServiceLocator.Current.GetInstance<QueryViewModel>();
             }
         }
         
